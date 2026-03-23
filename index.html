@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Manager BIJU T.R</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Card */
+.card {
+    width: 340px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* Header & Footer */
+.header, .footer {
+    height: 6px;
+    background: linear-gradient(90deg, red, yellow, green);
+}
+
+/* Top section (Logo + Name) */
+.top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px 5px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+/* Info text */
+.info h2 {
+    margin: 0;
+    color: #333;
+    font-size: 20px;
+}
+
+.info p {
+    margin: 3px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Divider */
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 10px 20px;
+}
+
+/* Address */
+.address {
+    padding: 0 20px;
+    text-align: left;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Buttons */
+.btn {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 10px;
+    margin: 10px 20px;
+    padding: 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background: #fff;
+    color: #333;
+}
+
+.btn i {
+    font-size: 16px;
+}
+
+/* Row buttons */
+.btn-row {
+    display: flex;
+    gap: 10px;
+    margin: 10px 20px 20px;
+}
+
+.btn-row .btn {
+    flex: 1;
+    margin: 0;
+}
+
+/* Icon Colors */
+.call i { color: #ff4b2b; }
+.whatsapp i { color: #25D366; }
+.email i { color: #f1c40f; }
+.save i { color: #333; }
+.share i { color: #007bff; }
+
+/* Hover */
+.btn:hover {
+    transform: translateY(-3px);
+    background: #f9f9f9;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="header"></div>
+
+    <!-- Top Section -->
+    <div class="top">
+        <img src="img/oil.png" alt="logo" class="logo"width="200" height="100">
+
+        <div class="info">
+            <h2>BIJU T.R</h2>
+            <p><b>Marketing Manager</b></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Address -->
+    <div class="address">
+        <b>A.E.P TRADING COMPANY</b><br>
+        Maru South, Alumkadavu P.O,<br>
+        Karunagappally,
+        Kollam,<br>Kerala - 690573
+    </div>
+
+    <!-- Buttons -->
+    <a href="tel:+916282361029" class="btn call">
+        <i class="fas fa-phone"></i> Call
+    </a>
+
+    <a href="https://wa.me/916282361029" class="btn whatsapp">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+
+    <a href="mailto:reghurajbiju@gmail.com" class="btn email">
+        <i class="fas fa-envelope"></i> Email
+    </a>
+
+    <div class="btn-row">
+        <button class="btn save" onclick="saveContact()">
+            <i class="fas fa-download"></i> Save
+        </button>
+
+        <button class="btn share" onclick="shareCard()">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </div>
+
+    <div class="footer"></div>
+</div>
+
+<script>
+// Save Contact
+function saveContact() {
+    const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Biju T R
+N:T R;Biju;;;
+ORG:A.E.P Trading Company
+TITLE:Marketing Manager
+TEL;TYPE=CELL:+916282361029
+EMAIL:reghurajbiju@gmail.com
+ADR:;;Maru South, Alumkadavu P.O, Karunagappally, Kollam, Kerala 690573;India
+END:VCARD`;
+
+    const blob = new Blob([vCardData], { type: "text/vcard" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Biju_TR.vcf";
+    link.click();
+}
+
+// Share Card
+function shareCard() {
+    const shareData = {
+        title: "Biju T R - Marketing Manager",
+        text: "Contact: +91 6282361029",
+        url: window.location.href
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData)
+        .catch(err => console.log(err));
+    } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copied successfully!");
+    }
+}
+</script>
+
+</body>
+</html>
